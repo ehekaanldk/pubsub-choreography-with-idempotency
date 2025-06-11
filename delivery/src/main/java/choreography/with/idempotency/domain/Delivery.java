@@ -52,7 +52,7 @@ public class Delivery  {
         
         repository().findByOrderId(String.valueOf(orderRejected.getId())).ifPresent/*OrElse*/(delivery->{
             new DeliveryCancelled(delivery).publishAfterCommit();
-            repository().delete(delivery);
+            repository().delete(delivery); // 주문이 취소되면 배송건을 지운다.
          }
          
         //, ()->{
